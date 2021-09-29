@@ -19,10 +19,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String userName = '';
-  String _displayTime = '0';
+  // String _displayTime = '0';
   String newUserName = '';
-  int totalRuns = 0, newRun = 0;
-  double totalDistance = 0, newDistance = 0;
+  // int totalRuns = 0, newRun = 0;
+  // double totalDistance = 0, newDistance = 0;
   int totalTIme = 0, newTime = 0;
   // List<GetResults2> resultObjs = [];
   XFile? fileImg;
@@ -72,9 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
       st = '0';
     } else st = '';
     GlobalData.formattedTime = '${min}:${st}${sec}';
-    setState(() {
-      _displayTime = '${min}:${st}${sec}';
-    });
+    // setState(() {
+    //   _displayTime = '${min}:${st}${sec}';
+    // });
 
   }
 
@@ -228,13 +228,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                "${totalRuns}",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              // Text(
+              //   // "${totalRuns}",
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -261,13 +261,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                '${totalDistance.toStringAsFixed(2)} Mi',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              // Text(
+              //   '${totalDistance.toStringAsFixed(2)} Mi',
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -294,13 +294,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                "$_displayTime",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              // Text(
+              //   "$_displayTime",
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -413,19 +413,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void changeTotalRuns() {
-    setState(() {
-      totalRuns = GlobalData.totalRuns!;
-    });
+    // setState(() {
+    //   totalRuns = GlobalData.totalRuns!;
+    // });
   }
   void changeTotalDistance() {
-    setState(() {
-      totalDistance = GlobalData.totalDistance!;
-    });
+    // setState(() {
+    //   totalDistance = GlobalData.totalDistance!;
+    // });
   }
   void changeTotalTime() {
-    setState(() {
-      totalTIme = GlobalData.totalTime!;
-    });
+    // setState(() {
+    //   totalTIme = GlobalData.totalTime!;
+    // });
   }
 
 

@@ -63,17 +63,18 @@ class LoginScreenViewModel{
       jsonObject = json.decode(ret);
       print(ret);
       var accessToken = jsonObject["token"];
-      var jwt = accessToken["accessToken"];
-      await storage.write(key: "jwt", value: jwt);
+      //var jwt = accessToken["accessToken"];
+      print(accessToken);
+      await storage.write(key: "accessToken", value: accessToken);
 
-      decodedToken = JwtDecoder.decode(ret);
-      GlobalData.userId = decodedToken["userId"];
-      GlobalData.firstName = decodedToken["firstName"];
-      GlobalData.lastName = decodedToken["lastName"];
-      firstName = GlobalData.firstName!;
-      lastName = GlobalData.lastName!;
+      decodedToken = JwtDecoder.decode(accessToken);
+      GlobalData.userId = jsonObject["id"];
+      // GlobalData.firstName = jsonObject["firstName"];
+      // GlobalData.lastName = jsonObject["lastName"];
+      // firstName = GlobalData.firstName!;
+      // lastName = GlobalData.lastName!;
 
-      getFullName(firstName, lastName);
+      // getFullName(firstName, lastName);
       GlobalData.userName = loginName;
 
 

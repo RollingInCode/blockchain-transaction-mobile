@@ -18,39 +18,39 @@ import 'package:blockchain_app/main.dart';
 
 void main() {
   group('Test Login', () {
-    test('First name is returned from login', () async {
-      String firstName = '';
-      var res = await GetAPI.login('frankblockchain', 'frankblockchain');
-      var jsonObject = json.decode(res);
-      var accessToken = jsonObject["token"];
-      var jwt = accessToken["accessToken"];
-      var decodedToken = JwtDecoder.decode(res);
-      firstName = decodedToken["firstName"];
-      expect(firstName, 'Frank');
-    });
+    // test('First name is returned from login', () async {
+    //   String firstName = '';
+    //   var res = await GetAPI.login('frankblockchain', 'frankblockchain');
+    //   var jsonObject = json.decode(res);
+    //   var accessToken = jsonObject["token"];
+    //   var jwt = accessToken["accessToken"];
+    //   var decodedToken = JwtDecoder.decode(res);
+    //   firstName = decodedToken["firstName"];
+    //   expect(firstName, 'Frank');
+    // });
 
     test('UserId is returned from login', () async {
-      var userId = -1;
+      var userId = "-1";
       var res = await GetAPI.login('frankblockchain', 'frankblockchain');
       var jsonObject = json.decode(res);
       var accessToken = jsonObject["token"];
-      var jwt = accessToken["accessToken"];
+      // var jwt = accessToken["token"];
 
-      var decodedToken = JwtDecoder.decode(res);
-      userId = decodedToken["userId"];
+      var decodedToken = JwtDecoder.decode(accessToken);
+      userId = decodedToken["id"];
 
-      expect(userId, 2);
+      expect(userId, "6142877dbe3c8b00165a5a28");
     });
 
-    test('UserId is returned from login', () async {
-      var lastName = '';
-      var res = await GetAPI.login('frankblockchain', 'frankblockchain');
-      var jsonObject = json.decode(res);
-      var accessToken = jsonObject["token"];
-      var jwt = accessToken["accessToken"];
-      var decodedToken = JwtDecoder.decode(res);
-      lastName = decodedToken["lastName"];
-      expect(lastName, 'Gonzalez');
-    });
+    // test('UserId is returned from login', () async {
+    //   var lastName = '';
+    //   var res = await GetAPI.login('frankblockchain', 'frankblockchain');
+    //   var jsonObject = json.decode(res);
+    //   var accessToken = jsonObject["token"];
+    //   var jwt = accessToken["accessToken"];
+    //   var decodedToken = JwtDecoder.decode(res);
+    //   lastName = decodedToken["lastName"];
+    //   expect(lastName, 'Gonzalez');
+    // });
   });
 }
