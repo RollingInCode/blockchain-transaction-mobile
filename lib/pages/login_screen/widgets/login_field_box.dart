@@ -69,7 +69,7 @@ class LoginFieldBox extends StatelessWidget {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.only(left: 20),
-                    hintText: "username",
+                    hintText: "Username",
                     hintStyle: TextStyle(color: Color(0xFF4695A2))),
               ),
             ),
@@ -95,7 +95,7 @@ class LoginFieldBox extends StatelessWidget {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.only(left: 20),
-                    hintText: "password",
+                    hintText: "Password",
                     hintStyle: TextStyle(color: Color(0xFF4695A2))),
               ),
             ),

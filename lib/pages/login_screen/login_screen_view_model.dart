@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:blockchain_app/pages/run_sequence/user_profile.dart';
+
 import '../../main.dart';
 
 import 'package:blockchain_app/pages/home_page/home_screen.dart';
@@ -33,6 +35,9 @@ class LoginScreenViewModel{
   String message = '', newMessageText = '';
   String loginName = '', password = '';
   String firstName = '', lastName = '';
+  String companyAddress = '', companyName = '';
+  String position = '';
+  bool isSeller = false;
   late Map<String, dynamic> decodedToken;
 
   changeText() {
@@ -69,6 +74,19 @@ class LoginScreenViewModel{
 
       decodedToken = JwtDecoder.decode(accessToken);
       GlobalData.userId = jsonObject["id"];
+      GlobalData.firstName = jsonObject["name"];
+      // GlobalData.lastName = jsonObject["repLastName"];
+      // GlobalData.companyAddress = jsonObject["BusinessAddress"];
+      // GlobalData.companyName = jsonObject["CompanyName"];
+      // GlobalData.position = jsonObject["Position"];
+      // GlobalData.isSeller = jsonObject["isSeller"];
+      GlobalData.email = jsonObject["email"];
+      // GlobalData.firstName = firstName;
+      // GlobalData.lastName = lastName;
+      // GlobalData.companyAddress = companyAddress;
+      // GlobalData.companyName = companyName;
+      // GlobalData.position = position;
+      // GlobalData.isSeller = isSeller;
       // GlobalData.firstName = jsonObject["firstName"];
       // GlobalData.lastName = jsonObject["lastName"];
       // firstName = GlobalData.firstName!;
@@ -93,7 +111,7 @@ class LoginScreenViewModel{
       // await Leaderboard.getRunData();
       // await Leaderboard.getLeaderboardData();
 
-      Get.offAll(() => HomeScreen());
+      Get.offAll(() => User());
 
     }catch(e) {
       print(e);
@@ -108,12 +126,15 @@ class LoginScreenViewModel{
     Get.to(() => Forgot());
   }
 
-  void getFullName (String firstName, String lastName) {
-    GlobalData.fullName = firstName + ' ' + lastName;
+  // void getFullName (String firstName, String lastName) {
+  //   GlobalData.fullName = firstName + ' ' + lastName;
+  //
+  // }
 
-  }
-
-
+  // void getFirstName (String firstName) {
+  //   GlobalData.firstName = firstName;
+  //
+  // }
 
 
 

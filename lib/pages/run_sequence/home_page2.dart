@@ -39,10 +39,10 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     refreshImage();
-    changeText();
-    changeTotalRuns();
-    changeTotalDistance();
-    changeTotalTime();
+    // changeText();
+    // changeTotalRuns();
+    // changeTotalDistance();
+    // changeTotalTime();
     super.initState();
   }
 
@@ -91,16 +91,16 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Center(
-                                child: Text(
-
-                                  GlobalData.fullName,
-                                  style: TextStyle(
-                                    fontSize: 70.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
+                              // Center(
+                              //   child: Text(
+                              //
+                              //     // GlobalData.fullName,
+                              //     style: TextStyle(
+                              //       fontSize: 70.0,
+                              //       fontWeight: FontWeight.bold,
+                              //     ),
+                              //   ),
+                              // ),
 
 
 
@@ -382,25 +382,25 @@ class _HomeState extends State<Home> {
 
 
   }
-  void changeText() {
-    setState(() {
-      userName = GlobalData.userName!;
-    });
-  }
-
-  void changeTotalRuns() {
-    setState(() {
-      totalRuns = GlobalData.totalRuns!;
-    });
-  }
-  void changeTotalDistance() {
-    setState(() {
-      totalDistance = GlobalData.totalDistance!;
-    });
-  }
-  void changeTotalTime() {
-    setState(() {
-      totalTIme = GlobalData.totalTime!;
-    });
-  }
+  // void changeText() {
+  //   setState(() {
+  //     userName = GlobalData.userName!;
+  //   });
+  // }
+  //
+  // void changeTotalRuns() {
+  //   setState(() {
+  //     totalRuns = GlobalData.totalRuns!;
+  //   });
+  // }
+  // void changeTotalDistance() {
+  //   setState(() {
+  //     totalDistance = GlobalData.totalDistance!;
+  //   });
+  // }
+  // void changeTotalTime() {
+  //   setState(() {
+  //     totalTIme = GlobalData.totalTime!;
+  //   });
+  // }
 }

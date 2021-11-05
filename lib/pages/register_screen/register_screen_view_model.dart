@@ -22,18 +22,29 @@ class RegisterScreenViewModel{
   TextEditingController emailController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
+  TextEditingController addController = TextEditingController();
+  TextEditingController cnController = TextEditingController();
+  TextEditingController pController = TextEditingController();
 
   FocusNode userNameFocus = FocusNode();
   FocusNode pwdFocus = FocusNode();
   FocusNode emailFocus = FocusNode();
   FocusNode firstNameFocus = FocusNode();
   FocusNode lastNameFocus = FocusNode();
+  FocusNode companyNameFocus = FocusNode();
+  FocusNode companyAddressFocus = FocusNode();
+  FocusNode positionFocus = FocusNode();
 
   String email = '';
   String login = '';
   String password = '';
   String firstName = '';
   String lastName = '';
+  String companyAddress = '';
+  String companyName = '';
+  String position = '';
+
+  var jsonObject;
 
 
 
@@ -45,20 +56,26 @@ class RegisterScreenViewModel{
     password = pwdController.text;
     firstName = firstNameController.text;
     lastName = lastNameController.text;
+    companyAddress = addController.text;
+    companyName = cnController.text;
+    position = pController.text;
 
 
 
     try{
-      int ret = await GetAPI.register(email, firstName, lastName, login, password);
+      int ret = await GetAPI.register(email, firstName, lastName, login, password, companyAddress, companyName, position);
       GlobalData.userName = login;
       GlobalData.lastName = lastName;
       GlobalData.firstName = firstName;
       GlobalData.email = email;
+      GlobalData.companyAddress = companyAddress;
+      GlobalData.companyName = companyName;
+      GlobalData.position = position;
       if(ret == 200) {
         print('Register Successful');
 
       }
-      else print('Error');
+      else print('Error $ret');
 
     }
     catch(e){
@@ -82,6 +99,9 @@ class RegisterScreenViewModel{
       pwdController.clear();
       firstNameController.clear();
       lastNameController.clear();
+      cnController.clear();
+      addController.clear();
+      pController.clear();
       Get.offAll(() => LoginScreen());
     }catch(e){
       print(e);

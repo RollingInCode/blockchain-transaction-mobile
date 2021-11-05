@@ -8,12 +8,18 @@ class RegisterFieldBox extends StatelessWidget {
   late TextEditingController emailController;
   late TextEditingController firstNameController;
   late TextEditingController lastNameController;
+  late TextEditingController cnController;
+  late TextEditingController addController;
+  late TextEditingController pController;
 
   late FocusNode userNameFocus;
   late FocusNode pwdFocus;
   late FocusNode emailFocus;
   late FocusNode firstNameFocus;
   late FocusNode lastNameFocus;
+  late FocusNode companyNameFocus;
+  late FocusNode companyAddressFocus;
+  late FocusNode positionFocus;
 
   late VoidCallback cancelTap;
   late VoidCallback registerTap;
@@ -31,6 +37,12 @@ class RegisterFieldBox extends StatelessWidget {
     required this.lastNameFocus,
     required this.userNameController,
     required this.userNameFocus,
+    required this.cnController,
+    required this.companyNameFocus,
+    required this.addController,
+    required this.companyAddressFocus,
+    required this.pController,
+    required this.positionFocus,
   });
 
   @override
@@ -155,7 +167,7 @@ class RegisterFieldBox extends StatelessWidget {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.only(left: 20),
-                    hintText: "First Name",
+                    hintText: "Rep First Name",
                     hintStyle: TextStyle(color: Color(0xFF4695A2))),
               ),
             ),
@@ -180,7 +192,82 @@ class RegisterFieldBox extends StatelessWidget {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.only(left: 20),
-                    hintText: "Last Name",
+                    hintText: "Rep Last Name",
+                    hintStyle: TextStyle(color: Color(0xFF4695A2))),
+              ),
+            ),
+          ),
+          SizedBox(height: 30),
+          Container(
+            height: 55,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    offset: Offset(0, 0),
+                    blurRadius: 3,
+                  ),
+                ]),
+            child: Center(
+              child: TextField(
+                focusNode: positionFocus,
+                controller: pController,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 20),
+                    hintText: "Position/Job",
+                    hintStyle: TextStyle(color: Color(0xFF4695A2))),
+              ),
+            ),
+          ),
+          SizedBox(height: 30),
+          Container(
+            height: 55,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    offset: Offset(0, 0),
+                    blurRadius: 3,
+                  ),
+                ]),
+            child: Center(
+              child: TextField(
+                focusNode: companyNameFocus,
+                controller: cnController,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 20),
+                    hintText: "Company Name",
+                    hintStyle: TextStyle(color: Color(0xFF4695A2))),
+              ),
+            ),
+          ),
+          SizedBox(height: 30),
+          Container(
+            height: 55,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    offset: Offset(0, 0),
+                    blurRadius: 3,
+                  ),
+                ]),
+            child: Center(
+              child: TextField(
+                focusNode: companyAddressFocus,
+                controller: addController,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 20),
+                    hintText: "Company Address",
                     hintStyle: TextStyle(color: Color(0xFF4695A2))),
               ),
             ),

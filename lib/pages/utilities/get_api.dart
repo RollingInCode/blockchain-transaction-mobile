@@ -10,6 +10,7 @@ import 'package:flutter_bcrypt/flutter_bcrypt.dart';
 
 
 
+
 class GetAPI{
 
   //WORKING
@@ -34,18 +35,22 @@ class GetAPI{
   // WORKING
   // in: email, firstname, lastname, login, password
   // out: 'error' or 'all good'
-  static Future<int> register(String email, String firstname, String lastname, String login, String password) async {
+
+  static Future<int> register(String email, String firstname, String lastname, String login, String password, String companyAddress, String companyName, String position) async {
     var res = await http.post(
-        Uri.parse('$SERVER_IP/register'),
+        Uri.parse('$SERVER_IP/registerMobile'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
           'Email': '$email',
-          'firstname': '$firstname',
-          'lastname': '$lastname',
+          'RepFirstName': '$firstname',
+          'RepLastName': '$lastname',
           'Username': '$login',
-          'Password': '$password'})
+          'Password': '$password',
+          'BusinessAddress': '$companyAddress',
+          'CompanyName': '$companyName',
+          'Position': '$position'}),
 
     );
     return res.statusCode;
@@ -60,7 +65,7 @@ class GetAPI{
     print("$userId $firstname  $lastname  $email");
 
     var res = await http.post(
-        Uri.parse('$SERVER_IP/editUser'),
+        Uri.parse('$SERVER_IP/update'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -89,7 +94,7 @@ class GetAPI{
 
 
     var res = await http.post(
-        Uri.parse('$SERVER_IP/editPassword'),
+        Uri.parse('$SERVER_IP/ResetPassword/${GlobalData.userId}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -112,7 +117,7 @@ class GetAPI{
   //working
   static Future<void> verify (String pin) async {
     await http.post(
-        Uri.parse('$SERVER_IP/verifyuser'),
+        Uri.parse('$SERVER_IP/verify'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -180,7 +185,7 @@ class GetAPI{
     var res;
     print(email);
     res = await http.post(
-        Uri.parse('$SERVER_IP/sendpasswordemail'),
+        Uri.parse('$SERVER_IP/passResetEmail'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

@@ -28,6 +28,9 @@ class _LoginState extends State<Login> {
   String message = '', newMessageText = '';
   String loginName = '', password = '';
   String firstName = '', lastName = '';
+  String companyAddress = '', companyName = '';
+  String position = '';
+  bool isSeller = false;
 
 
 
@@ -145,11 +148,19 @@ class _LoginState extends State<Login> {
                               await storage.write(key: "jwt", value: jwt);
 
                               decodedToken = JwtDecoder.decode(ret);
-                              GlobalData.userId = decodedToken["userId"];
-                              GlobalData.firstName = decodedToken["firstName"];
-                              GlobalData.lastName = decodedToken["lastName"];
-                              firstName = GlobalData.firstName!;
-                              lastName = GlobalData.lastName!;
+                              GlobalData.userId = jsonObject["userId"];
+                              GlobalData.firstName = jsonObject["repFirstName"];
+                              GlobalData.lastName = jsonObject["repLastName"];
+                              GlobalData.companyAddress = jsonObject["BusinessAddress"];
+                              GlobalData.companyName = jsonObject["CompanyName"];
+                              GlobalData.position = jsonObject["Position"];
+                              GlobalData.isSeller = jsonObject["isSeller"];
+                              // firstName = GlobalData.firstName!;
+                              // lastName = GlobalData.lastName!;
+                              // companyAddress = GlobalData.companyAddress!;
+                              // companyName = GlobalData.companyName!;
+                              // position = GlobalData.position!;
+                              // isSeller = GlobalData.isSeller!;
 
                               getFullName(firstName, lastName);
                               GlobalData.userName = loginName;
@@ -226,9 +237,9 @@ class _LoginState extends State<Login> {
     List<GetResults> resultObjs = resultObjsJson.map((resultJson) => GetResults.fromJson(resultJson)).toList();
 
     try{
-      GlobalData.totalDistance = resultObjs[0].TotalDistance;
-      GlobalData.totalRuns = resultObjs[0].TotalRuns;
-      GlobalData.totalTime = resultObjs[0].TotalTime;
+      // GlobalData.totalDistance = resultObjs[0].TotalDistance;
+      // GlobalData.totalRuns = resultObjs[0].TotalRuns;
+      // GlobalData.totalTime = resultObjs[0].TotalTime;
       GlobalData.email = resultObjs[0].email;
     }catch(e){
       print(e);
@@ -236,36 +247,36 @@ class _LoginState extends State<Login> {
   }
 
 
-  Future<void> getLeaderboardData() async {
-    var ret = await GetAPI.searchUsers();
-    GlobalData.distance = [];
-
-
-    var resultObjsJson = jsonDecode(ret.body)['results'] as List;
-    List<GetResults> resultObjs = resultObjsJson.map((resultJson) => GetResults.fromJson(resultJson)).toList();
-    GlobalData.resultObjsBoo = List.from(resultObjs);
-    try{
-      for(int i =0; i<resultObjs.length;i++){
-        GlobalData.distance.add(resultObjs[i].TotalDistance);
-      }
-      int i = 0;
-      Map<int, double> map = Map.fromIterable(
-          GlobalData.distance,
-          key: (k) => resultObjs[i++].userId,
-          value: (v) => v
-      );
-
-      var sortedEntries = map.entries.toList()..sort((e1, e2) {
-        var diff = e2.value.compareTo(e1.value);
-        if (diff == 0) diff = e2.key.compareTo(e1.key);
-        return diff;
-      });
+  // Future<void> getLeaderboardData() async {
+  //   var ret = await GetAPI.searchUsers();
+  //   GlobalData.distance = [];
+  //
+  //
+  //   var resultObjsJson = jsonDecode(ret.body)['results'] as List;
+  //   List<GetResults> resultObjs = resultObjsJson.map((resultJson) => GetResults.fromJson(resultJson)).toList();
+  //   GlobalData.resultObjsBoo = List.from(resultObjs);
+  //   try{
+  //     for(int i =0; i<resultObjs.length;i++){
+  //       GlobalData.distance.add(resultObjs[i].TotalDistance);
+  //     }
+  //     int i = 0;
+  //     Map<int, double> map = Map.fromIterable(
+  //         GlobalData.distance,
+  //         key: (k) => resultObjs[i++].userId,
+  //         value: (v) => v
+  //     );
+  //
+  //     var sortedEntries = map.entries.toList()..sort((e1, e2) {
+  //       var diff = e2.value.compareTo(e1.value);
+  //       if (diff == 0) diff = e2.key.compareTo(e1.key);
+  //       return diff;
+  //     });
       //print(map);
 
 
       // GlobalData.userIdInOrder = [];
-      GlobalData.orginalIndex = [];
-      print(sortedEntries);
+      // GlobalData.orginalIndex = [];
+      // print(sortedEntries);
       // for(int j=0; j<sortedEntries.length;j++){
       //   GlobalData.userIdInOrder.add(sortedEntries[j].key);
       // }
@@ -277,26 +288,26 @@ class _LoginState extends State<Login> {
       //   }
       // }
       // print('${GlobalData.userIdInOrder} ,${GlobalData.orginalIndex} ');
-      print(GlobalData.resultObjsBoo[GlobalData.orginalIndex[0]].TotalDistance);
+      // print(GlobalData.resultObjsBoo[GlobalData.orginalIndex[0]].TotalDistance);
 
       //print(map);
       // print('this${GlobalData.distance}');
 
-    }catch(e){
-      print(e);
-    }
-  }
-
-
-
-  Future<void> getRunData() async {
-    var ret = await GetAPI.searchRun();
-    var resultObjsJson = jsonDecode(ret.body)['results'] as List;
-    GlobalData.resultObjs  = resultObjsJson.map((resultJson) => GetResults2.fromJson(resultJson)).toList();
-
-    print('${GlobalData.resultObjs} this');
-
-  }
+  //   }catch(e){
+  //     print(e);
+  //   }
+  // }
+  //
+  //
+  //
+  // Future<void> getRunData() async {
+  //   var ret = await GetAPI.searchRun();
+  //   var resultObjsJson = jsonDecode(ret.body)['results'] as List;
+  //   GlobalData.resultObjs  = resultObjsJson.map((resultJson) => GetResults2.fromJson(resultJson)).toList();
+  //
+  //   print('${GlobalData.resultObjs} this');
+  //
+  // }
 
 }
 

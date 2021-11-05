@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if ((milli % 60000) / 1000 < 10) {
       st = '0';
     } else st = '';
-    GlobalData.formattedTime = '${min}:${st}${sec}';
+    // GlobalData.formattedTime = '${min}:${st}${sec}';
     // setState(() {
     //   _displayTime = '${min}:${st}${sec}';
     // });
@@ -140,9 +140,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           IconButton(
                             onPressed: () async {
-                              await Leaderboard.getLeaderboardData();
-                              await Leaderboard.getRunData();
-                              await Leaderboard.getTotalData();
+                              // await Leaderboard.getLeaderboardData();
+                              // await Leaderboard.getRunData();
+                              // await Leaderboard.getTotalData();
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                             },
                             icon: Icon(Icons.home),

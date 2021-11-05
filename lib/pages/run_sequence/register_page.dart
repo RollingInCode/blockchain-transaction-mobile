@@ -23,14 +23,22 @@ class _RegisterState extends State<Register> {
   final emailController = TextEditingController();
   final userNameController = TextEditingController();
   final passController = TextEditingController();
-  final fnController = TextEditingController();
-  final lnController = TextEditingController();
+  final rfnController = TextEditingController();
+  final rlnController = TextEditingController();
+  final pController = TextEditingController();
+  final addController = TextEditingController();
+  final cnController = TextEditingController();
+
 
   String email = '';
   String login = '';
   String password = '';
-  String firstName = '';
-  String lastName = '';
+  String repFirstName = '';
+  String repLastName = '';
+  String companyName = '';
+  String companyAddress = '';
+  String position = '';
+
 
 
 
@@ -42,8 +50,11 @@ class _RegisterState extends State<Register> {
     emailController.dispose();
     userNameController.dispose();
     passController.dispose();
-    fnController.dispose();
-    lnController.dispose();
+    rfnController.dispose();
+    rlnController.dispose();
+    pController.dispose();
+    cnController.dispose();
+    addController.dispose();
     super.dispose();
   }
 
@@ -111,18 +122,42 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 15.0),
                     TextField(
-                      controller: fnController,
+                      controller: cnController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'First Name',
+                        labelText: 'Company Name',
                       ),
                     ),
                     SizedBox(height: 15.0),
                     TextField(
-                      controller: lnController,
+                      controller: rfnController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Last Name',
+                        labelText: 'Rep First Name',
+                      ),
+                    ),
+                    SizedBox(height: 15.0),
+                    TextField(
+                      controller: rlnController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Rep Last Name',
+                      ),
+                    ),
+                    SizedBox(height: 15.0),
+                    TextField(
+                      controller: pController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Position/Job',
+                      ),
+                    ),
+                    SizedBox(height: 15.0),
+                    TextField(
+                      controller: addController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Business Address',
                       ),
                     ),
                     SizedBox(height: 15.0),
@@ -137,22 +172,30 @@ class _RegisterState extends State<Register> {
                             email = emailController.text;
                             login = userNameController.text;
                             password = passController.text;
-                            firstName = fnController.text;
-                            lastName = lnController.text;
+                            repFirstName = rfnController.text;
+                            repLastName = rlnController.text;
+                            companyName = cnController.text;
+                            companyAddress = addController.text;
+                            position = pController.text;
 
 
 
                             try{
-                              int ret = await GetAPI.register(email, firstName, lastName, login, password);
+                              int ret = await GetAPI.register(email, repFirstName, repLastName, login, password, companyAddress, companyName, position);
                               GlobalData.userName = login;
-                              GlobalData.lastName = lastName;
-                              GlobalData.firstName = firstName;
+                              GlobalData.lastName = repLastName;
+                              GlobalData.firstName = repFirstName;
                               GlobalData.email = email;
+                              GlobalData.companyAddress = companyAddress;
+                              GlobalData.companyName = companyName;
+                              GlobalData.position = position;
+
                               if(ret == 200) {
                                 print('Register Successful');
 
                               }
                               else print('Error');
+
 
                             }
                             catch(e){
@@ -179,8 +222,11 @@ class _RegisterState extends State<Register> {
                               emailController.clear();
                               userNameController.clear();
                               passController.clear();
-                              fnController.clear();
-                              lnController.clear();
+                              rfnController.clear();
+                              rlnController.clear();
+                              cnController.clear();
+                              addController.clear();
+                              pController.clear();
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                             }catch(e){
                               print(e);
