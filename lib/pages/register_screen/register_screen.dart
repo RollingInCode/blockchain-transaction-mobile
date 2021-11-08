@@ -64,6 +64,8 @@ class RegisterScreenState extends State<RegisterScreen> {
           SingleChildScrollView(
             child: RegisterFieldBox(
               registerTap: model!.onRegisterTap,
+              optionBuyerTap: model!.onOptionBuyerTap,
+              optionSellerTap: model!.onOptionBuyerTap,
               pwdFocus: model!.pwdFocus,
               pwdController: model!.pwdController,
               cancelTap: model!.onCancelTap,
@@ -81,6 +83,8 @@ class RegisterScreenState extends State<RegisterScreen> {
               companyAddressFocus: model!.companyAddressFocus,
               pController: model!.pController,
               positionFocus: model!.positionFocus,
+              sellerController: model!.sellerController,
+              sellerFocus: model!.sellerFocus,
             ),
           ),
         ],

@@ -7,8 +7,11 @@ import 'package:blockchain_app/pages/utilities/get_api.dart';
 import 'package:blockchain_app/pages/utilities/global_data.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+
+import '../../main.dart';
 
 class RegisterScreenViewModel{
   RegisterScreenState? state;
@@ -25,6 +28,7 @@ class RegisterScreenViewModel{
   TextEditingController addController = TextEditingController();
   TextEditingController cnController = TextEditingController();
   TextEditingController pController = TextEditingController();
+  TextEditingController sellerController = TextEditingController();
 
   FocusNode userNameFocus = FocusNode();
   FocusNode pwdFocus = FocusNode();
@@ -34,6 +38,7 @@ class RegisterScreenViewModel{
   FocusNode companyNameFocus = FocusNode();
   FocusNode companyAddressFocus = FocusNode();
   FocusNode positionFocus = FocusNode();
+  FocusNode sellerFocus = FocusNode();
 
   String email = '';
   String login = '';
@@ -43,6 +48,7 @@ class RegisterScreenViewModel{
   String companyAddress = '';
   String companyName = '';
   String position = '';
+  bool seller = true;
 
   var jsonObject;
 
@@ -59,11 +65,17 @@ class RegisterScreenViewModel{
     companyAddress = addController.text;
     companyName = cnController.text;
     position = pController.text;
+    print('Registering user as a $seller seller');
+
+
+    // is seller needed for .text
 
 
 
     try{
-      int ret = await GetAPI.register(email, firstName, lastName, login, password, companyAddress, companyName, position);
+      int ret = await GetAPI.register(email, firstName, lastName, login, password, companyAddress, companyName, position, seller);
+      // jsonObject = json.decode(ret);
+      // GlobalData.userId = jsonObject["id"];
       GlobalData.userName = login;
       GlobalData.lastName = lastName;
       GlobalData.firstName = firstName;
@@ -71,6 +83,7 @@ class RegisterScreenViewModel{
       GlobalData.companyAddress = companyAddress;
       GlobalData.companyName = companyName;
       GlobalData.position = position;
+      GlobalData.isSeller = seller;
       if(ret == 200) {
         print('Register Successful');
 
@@ -102,11 +115,28 @@ class RegisterScreenViewModel{
       cnController.clear();
       addController.clear();
       pController.clear();
+      sellerController.clear();
       Get.offAll(() => LoginScreen());
     }catch(e){
       print(e);
     }
   }
+
+  void onOptionBuyerTap(){
+    try {
+    seller = false;
+    } catch(e){
+      print(e);
+    }
+  }
+  void onOptionSellerTap(){
+    try {
+    seller = true;
+    } catch(e){
+      print(e);
+    }
+  }
+
 
 
 }

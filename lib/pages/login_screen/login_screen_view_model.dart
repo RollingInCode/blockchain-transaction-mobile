@@ -68,19 +68,20 @@ class LoginScreenViewModel{
       jsonObject = json.decode(ret);
       print(ret);
       var accessToken = jsonObject["token"];
+      // var savedUser = jsonObject["accessToken"];
       //var jwt = accessToken["accessToken"];
       print(accessToken);
       await storage.write(key: "accessToken", value: accessToken);
 
       decodedToken = JwtDecoder.decode(accessToken);
       GlobalData.userId = jsonObject["id"];
-      GlobalData.firstName = jsonObject["name"];
-      // GlobalData.lastName = jsonObject["repLastName"];
-      // GlobalData.companyAddress = jsonObject["BusinessAddress"];
-      // GlobalData.companyName = jsonObject["CompanyName"];
-      // GlobalData.position = jsonObject["Position"];
-      // GlobalData.isSeller = jsonObject["isSeller"];
-      GlobalData.email = jsonObject["email"];
+      GlobalData.firstName = jsonObject["firstName"];
+      GlobalData.lastName = jsonObject["lastName"];
+      GlobalData.companyAddress = jsonObject["businessAddress"];
+      GlobalData.companyName = jsonObject["companyName"]; // try
+      GlobalData.position = jsonObject["position"];
+      GlobalData.isSeller = jsonObject["isSeller"];
+      GlobalData.email = jsonObject["email"]; // try
       // GlobalData.firstName = firstName;
       // GlobalData.lastName = lastName;
       // GlobalData.companyAddress = companyAddress;

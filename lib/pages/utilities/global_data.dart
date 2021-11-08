@@ -9,14 +9,14 @@ class GlobalData
 {
   static late String userId;
   static late String firstName;
-  static String? lastName;
-  static String? fullName;
-  static late String userName;
-  static late String email;
-  static String? companyAddress;
-  static String? companyName;
+  static late String lastName;
+  static late String? fullName;
+  static String? userName; // required
+  static String? email; // required
+  static late String companyAddress;
+  static late String companyName;
   static String? position;
-  static bool? isSeller;
+  static late bool isSeller;
   // static int? totalRuns;
   // static double? totalDistance;
   // static int? totalTime;

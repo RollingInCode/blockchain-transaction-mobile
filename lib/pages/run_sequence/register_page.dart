@@ -12,6 +12,8 @@ import 'package:blockchain_app/pages/run_sequence/verify_user.dart';
 // import 'package:fitness_app_development/utilities/get_api.dart';
 import 'package:flutter/material.dart';
 
+enum SellerOption { seller, buyer }
+
 class Register extends StatefulWidget {
 
   @override
@@ -19,6 +21,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+
+  SellerOption? _option = SellerOption.seller;
 
   final emailController = TextEditingController();
   final userNameController = TextEditingController();
@@ -28,6 +32,7 @@ class _RegisterState extends State<Register> {
   final pController = TextEditingController();
   final addController = TextEditingController();
   final cnController = TextEditingController();
+  final sellerController = TextEditingController(); //text editing, is that necessary?
 
 
   String email = '';
@@ -38,6 +43,7 @@ class _RegisterState extends State<Register> {
   String companyName = '';
   String companyAddress = '';
   String position = '';
+  bool seller = true;
 
 
 
@@ -55,6 +61,7 @@ class _RegisterState extends State<Register> {
     pController.dispose();
     cnController.dispose();
     addController.dispose();
+    sellerController.dispose();
     super.dispose();
   }
 
@@ -161,6 +168,39 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     SizedBox(height: 15.0),
+                    TextField(
+                      controller: sellerController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Seller/Buyer',
+                      ),
+                    ),
+                    SizedBox(height: 15.0),
+                    // test field for radio
+                    ListTile(
+                      title: const Text('Seller'),
+                      leading: Radio(
+                        value: SellerOption.seller,
+                        groupValue: _option,
+                        onChanged: (SellerOption? value) {
+                          setState(() {
+                            _option = value;
+                          });
+                        },
+                      ),
+                    ),
+                    ListTile(
+                      title: const Text('Buyer'),
+                      leading: Radio(
+                        value: SellerOption.buyer,
+                        groupValue: _option,
+                        onChanged: (SellerOption? value) {
+                          setState(() {
+                            _option = value;
+                          });
+                        },
+                      ),
+                    ),
 
                     SizedBox(height: 20.0),
                     Row(
@@ -177,11 +217,12 @@ class _RegisterState extends State<Register> {
                             companyName = cnController.text;
                             companyAddress = addController.text;
                             position = pController.text;
+                            // reserved for seller - sellerController.text?
 
 
 
                             try{
-                              int ret = await GetAPI.register(email, repFirstName, repLastName, login, password, companyAddress, companyName, position);
+                              int ret = await GetAPI.register(email, repFirstName, repLastName, login, password, companyAddress, companyName, position, seller);
                               GlobalData.userName = login;
                               GlobalData.lastName = repLastName;
                               GlobalData.firstName = repFirstName;
@@ -189,6 +230,7 @@ class _RegisterState extends State<Register> {
                               GlobalData.companyAddress = companyAddress;
                               GlobalData.companyName = companyName;
                               GlobalData.position = position;
+                              GlobalData.isSeller = seller;
 
                               if(ret == 200) {
                                 print('Register Successful');
@@ -227,6 +269,7 @@ class _RegisterState extends State<Register> {
                               cnController.clear();
                               addController.clear();
                               pController.clear();
+                              sellerController.clear();
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                             }catch(e){
                               print(e);

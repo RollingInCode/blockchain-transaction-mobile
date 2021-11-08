@@ -36,7 +36,7 @@ class GetAPI{
   // in: email, firstname, lastname, login, password
   // out: 'error' or 'all good'
 
-  static Future<int> register(String email, String firstname, String lastname, String login, String password, String companyAddress, String companyName, String position) async {
+  static Future<int> register(String email, String firstname, String lastname, String login, String password, String companyAddress, String companyName, String position, bool seller) async {
     var res = await http.post(
         Uri.parse('$SERVER_IP/registerMobile'),
         headers: <String, String>{
@@ -50,7 +50,8 @@ class GetAPI{
           'Password': '$password',
           'BusinessAddress': '$companyAddress',
           'CompanyName': '$companyName',
-          'Position': '$position'}),
+          'Position': '$position',
+          'isSeller': '$seller'}),
 
     );
     return res.statusCode;
@@ -58,24 +59,27 @@ class GetAPI{
 
 
   //WORKING
-  static Future<http.Response> editUser({String firstname = '', String lastname = '', String email = '', String username = ''}) async {
+  static Future<http.Response> editUser({String firstname = '', String lastname = '', String email = '', String companyName = '', String companyAddress = '', String position = ''}) async {
     var jwt = await storage.read(key: "jwt");
     String userId = GlobalData.userId;
 
-    print("$userId $firstname  $lastname  $email");
+    print("$userId $firstname  $lastname ");
+    //
 
-    var res = await http.post(
+    var res = await http.put(
         Uri.parse('$SERVER_IP/update'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'userId': '$userId',
-          'firstname': '$firstname',
-          'lastname': '$lastname',
-          'username' : '$username',
-          'email': '$email',
-          'jwtToken': '$jwt'})
+          'id': '$userId',
+          'RepFirstName': '$firstname',
+          'RepLastName': '$lastname',
+          'BusinessAddress': '$companyAddress',
+          'CompanyName': '$companyName',
+          'Position': '$position',
+          'Email': '$email',
+          'token': '$jwt'})
 
     );
     if(res.statusCode == 200){
@@ -116,13 +120,13 @@ class GetAPI{
 
   //working
   static Future<void> verify (String pin) async {
-    await http.post(
-        Uri.parse('$SERVER_IP/verify'),
+    await http.put(
+        Uri.parse('https://blkchn-trxn-verif.herokuapp.com/api/verifyMobile'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'text': '$pin',
+          'token': '$pin',
           })
 
     );
@@ -185,7 +189,7 @@ class GetAPI{
     var res;
     print(email);
     res = await http.post(
-        Uri.parse('$SERVER_IP/passResetEmail'),
+        Uri.parse('$SERVER_IP/passResetEmailMobile'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -206,12 +210,12 @@ class GetAPI{
     var res;
 
     res = await http.post(
-        Uri.parse('$SERVER_IP/passwordreset'),
+        Uri.parse('$SERVER_IP/resetPasswordMobile'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'passkey' : '$passkey',
+          'token' : '$passkey',
           'newPass' : '$pass',
         })
     );

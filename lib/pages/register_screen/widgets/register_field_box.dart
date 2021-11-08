@@ -1,3 +1,4 @@
+import 'package:blockchain_app/pages/run_sequence/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ class RegisterFieldBox extends StatelessWidget {
   late TextEditingController cnController;
   late TextEditingController addController;
   late TextEditingController pController;
+  late TextEditingController sellerController;
 
   late FocusNode userNameFocus;
   late FocusNode pwdFocus;
@@ -20,13 +22,18 @@ class RegisterFieldBox extends StatelessWidget {
   late FocusNode companyNameFocus;
   late FocusNode companyAddressFocus;
   late FocusNode positionFocus;
+  late FocusNode sellerFocus;
 
   late VoidCallback cancelTap;
   late VoidCallback registerTap;
+  late VoidCallback optionBuyerTap;
+  late VoidCallback optionSellerTap;
 
   RegisterFieldBox({
     required this.emailController,
     required this.cancelTap,
+    required this.optionBuyerTap,
+    required this.optionSellerTap,
     required this.pwdController,
     required this.pwdFocus,
     required this.emailFocus,
@@ -43,7 +50,11 @@ class RegisterFieldBox extends StatelessWidget {
     required this.companyAddressFocus,
     required this.pController,
     required this.positionFocus,
+    required this.sellerController,
+    required this.sellerFocus,
   });
+  double sideLength = 50;
+
 
   @override
   Widget build(BuildContext context) {
@@ -273,6 +284,88 @@ class RegisterFieldBox extends StatelessWidget {
             ),
           ),
           SizedBox(height: 30),
+
+
+          /// reserved for seller radio buttons
+          Container(
+              height: 55,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      offset: Offset(0, 0),
+                      blurRadius: 3,
+                    ),
+                  ]),
+              child: Row(
+
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    child: AnimatedContainer(
+                      height: 45,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        gradient: LinearGradient(colors: [
+                          Color(0xFF4297FE),
+                          Color(0xFF76DDFF),
+                        ]),
+                      ),
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.easeIn,
+                      child: Material(
+                        color: Colors.yellow,
+                        child: InkWell(
+                          onTap: optionSellerTap,
+                          child: Center(
+                            child: Text(
+                              "Seller",
+                              style: TextStyle(color: Colors.white,fontSize: 15),
+                            ),
+                          ),
+
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: optionBuyerTap,
+
+                    child: AnimatedContainer(
+                      height: 45,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.white,
+                      ),
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.easeIn,
+                      child: Material(
+                        color: Colors.yellow,
+                        child: InkWell(
+                          onTap: optionBuyerTap,
+                          child: Center(
+                            child: Text(
+                              "Buyer",
+                              style: TextStyle(color: Colors.white,fontSize: 15),
+                            ),
+                          ),
+
+                        ),
+                      ),
+                  ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 30),
+          /// end of Seller, Buyer selection
+          // regular buttons
+
+          SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -320,4 +413,6 @@ class RegisterFieldBox extends StatelessWidget {
       ),
     );
   }
+
+
 }

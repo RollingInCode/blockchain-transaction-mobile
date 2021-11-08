@@ -95,7 +95,7 @@ class _UserState extends State<User> {
             // await Leaderboard.getRunData();
             // await Leaderboard.getLeaderboardData();
             Navigator.of(context).popUntil((route) => route.isFirst);
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Settings()));
           },
           icon: new Icon(Icons.arrow_back, color: Colors.black),
         ),

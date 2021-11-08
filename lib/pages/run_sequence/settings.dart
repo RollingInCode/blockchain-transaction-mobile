@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:blockchain_app/pages/home_page/home_screen.dart';
 import 'package:blockchain_app/pages/login_screen/login_screen.dart';
+import 'package:blockchain_app/pages/run_sequence/change_position.dart';
 import 'package:blockchain_app/pages/run_sequence/user_profile.dart';
 import 'package:blockchain_app/pages/utilities/get_api.dart';
 import 'package:blockchain_app/pages/utilities/global_data.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gravatar/flutter_gravatar.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'change_companyadd.dart';
+import 'change_companyname.dart';
 import 'change_email.dart';
 import 'change_name.dart';
 import 'change_pass.dart';
@@ -187,7 +190,87 @@ class _SettingsState extends State<Settings> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ChangeUserName()));
+                                builder: (context) => ChangeCompanyName()));
+                      },
+                      child: Container(
+                        margin:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        padding:
+                        EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.teal)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.portrait, size: 30),
+                            Container(
+                              padding: EdgeInsets.only(left: 10),
+                              width: Get.width * 0.39,
+                              child: Text(
+                                "Change Company Name",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.teal,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            Icon(Icons.chevron_right_outlined, size: 30)
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChangeCompanyAddress()));
+                      },
+                      child: Container(
+                        margin:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        padding:
+                        EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.teal)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.portrait, size: 30),
+                            Container(
+                              padding: EdgeInsets.only(left: 10),
+                              width: Get.width * 0.39,
+                              child: Text(
+                                "Change Company Address",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Colors.teal,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            Icon(Icons.chevron_right_outlined, size: 30)
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChangePosition()));
                       },
                       child: Container(
                         margin:
@@ -206,7 +289,7 @@ class _SettingsState extends State<Settings> {
                               padding: EdgeInsets.only(left: 10),
                               width: Get.width * 0.39,
                               child: Text(
-                                "Change Username",
+                                "Change Position",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(

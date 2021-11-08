@@ -1,7 +1,11 @@
 import 'package:blockchain_app/pages/pass_reset/forgot_password.dart';
+import 'package:blockchain_app/pages/pass_reset/forgot_password_2.dart';
+import 'package:blockchain_app/pages/run_sequence/change_companyadd.dart';
+import 'package:blockchain_app/pages/run_sequence/change_companyname.dart';
 import 'package:blockchain_app/pages/run_sequence/change_email.dart';
 import 'package:blockchain_app/pages/run_sequence/change_name.dart';
 import 'package:blockchain_app/pages/run_sequence/change_pass.dart';
+import 'package:blockchain_app/pages/run_sequence/change_position.dart';
 import 'package:blockchain_app/pages/run_sequence/change_username.dart';
 import 'package:blockchain_app/pages/run_sequence/register_page.dart';
 import 'package:blockchain_app/pages/run_sequence/settings.dart';
@@ -27,6 +31,7 @@ void main() => runApp(GetMaterialApp(
     '/': (context) => LoginScreen(),
     '/register': (context) => Register(),
     '/forgot_password' : (context) => Forgot(),
+    '/forgot_password_2' : (context) => Forgot2(),
     '/home_page' : (context) => HomeScreen(),
     '/verify_user' : (context) => Verify(),
     '/user_profile': (context) => User(),
@@ -35,6 +40,9 @@ void main() => runApp(GetMaterialApp(
     '/change_name': (context) => ChangeName(),
     '/change_pass': (context) => ChangePass(),
     '/change_username': (context) => ChangeUserName(),
+    '/change_companyname': (context) => ChangeCompanyName(),
+    '/change_companyadd': (context) => ChangeCompanyAddress(),
+    '/change_position': (context) => ChangePosition(),
 
   },
 

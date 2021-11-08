@@ -17,23 +17,22 @@ import 'home_page2.dart';
 
 //WORK IN PROGRESS
 
-class ChangeName extends StatefulWidget {
-  const ChangeName({Key? key}) : super(key: key);
+class ChangePosition extends StatefulWidget {
+  const ChangePosition({Key? key}) : super(key: key);
 
   @override
-  _ChangeNameState createState() => _ChangeNameState();
+  _ChangePositionState createState() => _ChangePositionState();
 }
 
-class _ChangeNameState extends State<ChangeName> {
+class _ChangePositionState extends State<ChangePosition> {
 
-  final fnController = TextEditingController();
-  final lnController = TextEditingController();
+  final pController = TextEditingController();
+
 
 
   @override
   void dispose(){ // dispose controller when page is disposed
-    fnController.dispose();
-    lnController.dispose();
+    pController.dispose();
     super.dispose();
   }
 
@@ -89,7 +88,7 @@ class _ChangeNameState extends State<ChangeName> {
                 children: [
                   SizedBox(height: 80),
                   Text(
-                    "Edit Name",
+                    "Edit Position",
                     style: TextStyle(
                         color: Color(0xFF4695A2),
                         fontSize: 31,
@@ -110,56 +109,33 @@ class _ChangeNameState extends State<ChangeName> {
                         ]),
                     child: Center(
                       child: TextField(
-                        controller: fnController,
+                        controller: pController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.only(left: 20),
-                            hintText: "Enter first name",
+                            hintText: "Enter job position",
                             hintStyle: TextStyle(color: Color(0xFF4695A2))),
                       ),
                     ),
                   ),
                   SizedBox(height: 30),
-                  Container(
-                    height: 55,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            offset: Offset(0, 0),
-                            blurRadius: 3,
-                          ),
-                        ]),
-                    child: Center(
-                      child: TextField(
-                        controller: lnController,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 20),
-                            hintText: "Enter last name",
-                            hintStyle: TextStyle(color: Color(0xFF4695A2))),
-                      ),
-                    ),
-                  ),
+
                   SizedBox(height: 40),
                   InkWell(
                     onTap: () async {
-                      String firstName = fnController.text;
-                      String lastName = lnController.text;
+                      String position = pController.text;
 
-                      //GlobalData.fullName = '$firstName $lastName';
-                      if(GlobalData.firstName != null && GlobalData.lastName != null){
+
+                      GlobalData.position = '$position';
+                      if(GlobalData.position != null){
 
                         try{
-                          var ret = await GetAPI.editUser(firstname: firstName, lastname: lastName);
+                          var ret = await GetAPI.editUser(position: position);
 
                           var jsonObject = json.decode(ret.body);
                           print('tryandcatch');
                           if(ret.statusCode == 200){
-                            GlobalData.firstName = firstName;
-                            GlobalData.lastName = lastName;
+                            GlobalData.position = position;
                           }
                           else{
                             print('fail');

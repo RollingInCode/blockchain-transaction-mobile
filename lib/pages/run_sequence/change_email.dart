@@ -57,7 +57,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
                   ),
                 ),
                 Text(
-                  "Free Runner",
+                  "Blockchain Transaction",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
