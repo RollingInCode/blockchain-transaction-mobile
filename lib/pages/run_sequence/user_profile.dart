@@ -252,7 +252,7 @@ class _UserState extends State<User> {
                             ),
                             SizedBox(height: 10),
                             Text(
-                                '${(GlobalData.isSeller == true ? "Seller" : "${GlobalData.isSeller}")}',
+                                '${(GlobalData.isSeller == true ? "Seller" : "Buyer")}',
                                 style: TextStyle(
                                     color: Color(0xFF4395A1),
                                     letterSpacing: 2.0,

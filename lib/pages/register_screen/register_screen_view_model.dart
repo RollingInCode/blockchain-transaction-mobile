@@ -28,7 +28,7 @@ class RegisterScreenViewModel{
   TextEditingController addController = TextEditingController();
   TextEditingController cnController = TextEditingController();
   TextEditingController pController = TextEditingController();
-  TextEditingController sellerController = TextEditingController();
+  // TextEditingController sellerController = TextEditingController();
 
   FocusNode userNameFocus = FocusNode();
   FocusNode pwdFocus = FocusNode();
@@ -56,6 +56,8 @@ class RegisterScreenViewModel{
 
   late Map<String, dynamic> decodedToken;
 
+  bool get changeTransaction => GlobalData.isSeller;
+
   Future<void> onRegisterTap() async {
     email = emailController.text;
     login = userNameController.text;
@@ -65,6 +67,8 @@ class RegisterScreenViewModel{
     companyAddress = addController.text;
     companyName = cnController.text;
     position = pController.text;
+    // seller = sellerController;
+    seller = changeTransaction;
     print('Registering user as a $seller seller');
 
 
@@ -115,28 +119,28 @@ class RegisterScreenViewModel{
       cnController.clear();
       addController.clear();
       pController.clear();
-      sellerController.clear();
+      // sellerController.clear();
       Get.offAll(() => LoginScreen());
     }catch(e){
       print(e);
     }
   }
 
-  void onOptionBuyerTap(){
-    try {
-    seller = false;
-    } catch(e){
-      print(e);
-    }
-  }
-  void onOptionSellerTap(){
-    try {
-    seller = true;
-    } catch(e){
-      print(e);
-    }
-  }
-
-
+  // onOptionBuyerTap() async {
+  //   try {
+  //     seller = false;
+  //     return seller;
+  //   } catch(e){
+  //     print(e);
+  //   }
+  // }
+  // onOptionSellerTap() async {
+  //   try {
+  //     seller = true;
+  //     return seller;
+  //   } catch(e){
+  //     print(e);
+  //   }
+  // }
 
 }

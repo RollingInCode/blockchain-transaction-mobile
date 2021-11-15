@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:blockchain_app/pages/utilities/global_data.dart';
 
 import '../../main.dart';
@@ -62,9 +64,10 @@ class GetAPI{
   static Future<http.Response> editUser({String firstname = '', String lastname = '', String email = '', String companyName = '', String companyAddress = '', String position = ''}) async {
     var jwt = await storage.read(key: "jwt");
     String userId = GlobalData.userId;
+    String existingEmail = GlobalData.email;
 
-    print("$userId $firstname  $lastname ");
-    //
+    print("$userId $firstname  $lastname $existingEmail");
+
 
     var res = await http.put(
         Uri.parse('$SERVER_IP/update'),
@@ -78,12 +81,21 @@ class GetAPI{
           'BusinessAddress': '$companyAddress',
           'CompanyName': '$companyName',
           'Position': '$position',
-          'Email': '$email',
+          'Email': '$existingEmail',
           'token': '$jwt'})
 
+
     );
-    if(res.statusCode == 200){
-      return res;
+
+    /// Debug errors here
+    // print('checkpoint');
+    // print(res.statusCode);
+    // return res;
+
+
+
+   if(res.statusCode == 200){
+     return res;
 
     }
     return res;

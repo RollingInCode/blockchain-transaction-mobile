@@ -32,7 +32,7 @@ class _RegisterState extends State<Register> {
   final pController = TextEditingController();
   final addController = TextEditingController();
   final cnController = TextEditingController();
-  final sellerController = TextEditingController(); //text editing, is that necessary?
+  // final sellerController = TextEditingController(); //text editing, is that necessary?
 
 
   String email = '';
@@ -50,6 +50,8 @@ class _RegisterState extends State<Register> {
 
   late Map<String, dynamic> decodedToken;
 
+  // bool get changeBoolean => null;
+
 
   @override
   void dispose(){
@@ -61,7 +63,7 @@ class _RegisterState extends State<Register> {
     pController.dispose();
     cnController.dispose();
     addController.dispose();
-    sellerController.dispose();
+    // sellerController.dispose();
     super.dispose();
   }
 
@@ -167,18 +169,19 @@ class _RegisterState extends State<Register> {
                         labelText: 'Business Address',
                       ),
                     ),
-                    SizedBox(height: 15.0),
-                    TextField(
-                      controller: sellerController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Seller/Buyer',
-                      ),
-                    ),
+                    // SizedBox(height: 15.0),
+                    // TextField(
+                    //   decoration: InputDecoration(
+                    //     controller: sellerController,
+                    //     border: OutlineInputBorder(),
+                    //     labelText: 'Seller/Buyer',
+                    //   ),
+                    // ),
                     SizedBox(height: 15.0),
                     // test field for radio
                     ListTile(
                       title: const Text('Seller'),
+                      // controller: sellerController,
                       leading: Radio(
                         value: SellerOption.seller,
                         groupValue: _option,
@@ -217,7 +220,8 @@ class _RegisterState extends State<Register> {
                             companyName = cnController.text;
                             companyAddress = addController.text;
                             position = pController.text;
-                            // reserved for seller - sellerController.text?
+                            // seller = changeBoolean;
+                            // seller = sellerController as bool;
 
 
 
@@ -269,7 +273,7 @@ class _RegisterState extends State<Register> {
                               cnController.clear();
                               addController.clear();
                               pController.clear();
-                              sellerController.clear();
+                              // sellerController.clear();
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                             }catch(e){
                               print(e);

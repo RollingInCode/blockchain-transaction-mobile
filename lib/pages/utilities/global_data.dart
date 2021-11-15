@@ -12,7 +12,7 @@ class GlobalData
   static late String lastName;
   static late String? fullName;
   static String? userName; // required
-  static String? email; // required
+  static late String email; // required
   static late String companyAddress;
   static late String companyName;
   static String? position;

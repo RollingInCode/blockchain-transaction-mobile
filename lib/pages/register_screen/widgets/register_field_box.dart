@@ -1,4 +1,5 @@
 import 'package:blockchain_app/pages/run_sequence/register_page.dart';
+import 'package:blockchain_app/pages/utilities/global_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,14 +27,14 @@ class RegisterFieldBox extends StatelessWidget {
 
   late VoidCallback cancelTap;
   late VoidCallback registerTap;
-  late VoidCallback optionBuyerTap;
-  late VoidCallback optionSellerTap;
+  // late VoidCallback optionBuyerTap;
+  // late VoidCallback optionSellerTap;
 
   RegisterFieldBox({
     required this.emailController,
     required this.cancelTap,
-    required this.optionBuyerTap,
-    required this.optionSellerTap,
+    // required this.optionBuyerTap,
+    // required this.optionSellerTap,
     required this.pwdController,
     required this.pwdFocus,
     required this.emailFocus,
@@ -50,7 +51,7 @@ class RegisterFieldBox extends StatelessWidget {
     required this.companyAddressFocus,
     required this.pController,
     required this.positionFocus,
-    required this.sellerController,
+    // required this.sellerController,
     required this.sellerFocus,
   });
   double sideLength = 50;
@@ -291,81 +292,62 @@ class RegisterFieldBox extends StatelessWidget {
               height: 55,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(50),
                   boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      offset: Offset(0, 0),
-                      blurRadius: 3,
-                    ),
                   ]),
               child: Row(
 
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InkWell(
-                    child: AnimatedContainer(
-                      height: 45,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        gradient: LinearGradient(colors: [
-                          Color(0xFF4297FE),
-                          Color(0xFF76DDFF),
-                        ]),
-                      ),
-                      duration: const Duration(seconds: 2),
-                      curve: Curves.easeIn,
-                      child: Material(
-                        color: Colors.yellow,
-                        child: InkWell(
-                          onTap: optionSellerTap,
-                          child: Center(
-                            child: Text(
-                              "Seller",
-                              style: TextStyle(color: Colors.white,fontSize: 15),
-                            ),
-                          ),
+                  AnimatedContainer(
+                    height: 45,
+                    width: 120,
+                    duration: const Duration(seconds: 2),
+                    child: InputChip(
+                      focusNode: sellerFocus,
+                      label: const Text('Seller'),
+                      onPressed: () {
+                        print('Seller');
+                        GlobalData.isSeller = true;
+                      },
+                      // onTap: produceText1,
+                        // setState(() {
+                        //   sideLength == 50 ? sideLength = 100 : sideLength = 50;
+                        // });
 
-                        ),
-                      ),
+
+                      // child: Material(
+                      //   color: Colors.blueGrey,
+                      //   child: InkWell(
+                      //     onTap: optionSellerTap,
+                      //     child: Center(
+                      //       child: Text(
+                      //         "Seller",
+                      //         style: TextStyle(color: Colors.white,fontSize: 15),
+                      //       ),
+                      //     ),
+                      //
+                      //   ),
+                      // ),
                     ),
                   ),
-                  InkWell(
-                    onTap: optionBuyerTap,
-
-                    child: AnimatedContainer(
-                      height: 45,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Colors.white,
-                      ),
-                      duration: const Duration(seconds: 2),
-                      curve: Curves.easeIn,
-                      child: Material(
-                        color: Colors.yellow,
-                        child: InkWell(
-                          onTap: optionBuyerTap,
-                          child: Center(
-                            child: Text(
-                              "Buyer",
-                              style: TextStyle(color: Colors.white,fontSize: 15),
-                            ),
-                          ),
-
-                        ),
-                      ),
-                  ),
-                  ),
-                ],
-              ),
+              AnimatedContainer(
+                height: 45,
+                width: 120,
+                duration: const Duration(seconds: 2),
+                child: InputChip(
+                  focusNode: sellerFocus,
+                  label: const Text('Buyer'),
+                  onPressed: () {
+                    print('Buyer');
+                    GlobalData.isSeller = false;
+                  },
+              ))]),
             ),
             SizedBox(height: 30),
           /// end of Seller, Buyer selection
           // regular buttons
 
-          SizedBox(height: 30),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -408,11 +390,21 @@ class RegisterFieldBox extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 30),
         ],
       ),
     );
   }
 
+  void setState(Null Function() param0) {}
 
+
+
+  void produceText1() {
+    print('I am now a seller');
+  }
+
+  void produceText2() {
+    print('I am now a buyer');
+  }
 }
